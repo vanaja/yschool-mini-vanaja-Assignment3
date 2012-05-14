@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>ySchool</title>
+    </h:head>
+    <h:body>
+        <h:form><h:commandLink value="Home" action="index" immediate="true"/>
+        </h:form>
+        <p:panel id="panel0" header="ySchool" style="margin-bottom:15px;">
+            <h:panelGrid columns="2"> 
+            <p:panel id="panel1" header="Add Student Marks" style="margin-bottom:10px;"> 
+                <h:form> 
+                    <h:panelGrid columns="3">      
+                        <h:outputText value="Student Name:*"/>
+
+                            <p:selectOneMenu value="#{studentManagedBean.createStudent.studentName}">  
+                                <f:selectItem itemLabel="Keerthi" itemValue="Keerthi" />  
+                                <f:selectItem itemLabel="Lukshi" itemValue="Lukshi" />  
+                                <f:selectItem itemLabel="Mayoo" itemValue="Mayoo" />  
+                                <f:selectItem itemLabel="Nilash" itemValue="Nilash" />  
+                            </p:selectOneMenu> <br/>
+                            
+                         <h:outputText value="Grade:*"/>
+                            <p:selectOneMenu value="#{studentManagedBean.createStudent.grade}">  
+                                <f:selectItem itemLabel="1" itemValue="1" />  
+                                <f:selectItem itemLabel="2" itemValue="2" />  
+                                <f:selectItem itemLabel="3" itemValue="3" />  
+                                <f:selectItem itemLabel="4" itemValue="4" />  
+                                <f:selectItem itemLabel="5" itemValue="5" />  
+                                <f:selectItem itemLabel="6" itemValue="6" />  
+                                <f:selectItem itemLabel="7" itemValue="7" />  
+                                <f:selectItem itemLabel="8" itemValue="8" /> 
+                                <f:selectItem itemLabel="9" itemValue="9" />  
+                                <f:selectItem itemLabel="10" itemValue="10" />  
+                                <f:selectItem itemLabel="11" itemValue="11" />  
+                                <f:selectItem itemLabel="12" itemValue="12" /> 
+                                <f:selectItem itemLabel="13" itemValue="13" /> 
+                            </p:selectOneMenu><br/>
+                            
+                        <h:outputText value="Subject:*"/>
+                        <p:inputText label="subject" value="#{studentManagedBean.createStudent.subject}" required="true" requiredMessage="Value is required:" id="subject" size="8">    
+                        </p:inputText><h:message for="subject" errorStyle="color : red;"/>
+                        
+                        <h:outputText value="Marks:*"/>
+                        <p:inputText label="marks"  value="#{studentManagedBean.createStudent.marks}" required="true" requiredMessage="" id="marks" size="8">
+                            <f:convertNumber /><f:validateLongRange minimum="0" maximum="100" /></p:inputText>
+                            <h:message for="marks" errorStyle="color : red;"/>
+                       
+                        <h:commandButton value="Create" action="#{studentManagedBean.prepareCreate}"/>
+                        <h:commandButton type="reset" value="Reset"/>
+                </h:panelGrid>
+            </h:form> 
+            </p:panel> 
+            <p:panel>  
+                <h:form>
+                    <h:panelGrid columns="1">        
+                        <h:dataTable value="#{studentManagedBean.users}" var="student" styleClass="user-table" headerClass="user-table-header"
+                                rowClasses="user-table-odd-row,user-table-even-row">
+                            <h:column>                    
+                                <f:facet name="header">Student Name</f:facet>     
+                                <h:outputText value="#{student.studentName}"></h:outputText>                                        
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Grade</f:facet>
+                                <h:outputText value="#{student.grade}" />
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Subject</f:facet>
+                                <h:outputText value="#{student.subject}"></h:outputText>    		
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">Marks</f:facet>
+                                <h:outputText value="#{student.marks}"></h:outputText>    		
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:panelGrid> 
+                </h:form>
+            </p:panel>      
+        </h:panelGrid>
+        </p:panel>
+    </h:body>
+</html>
+
